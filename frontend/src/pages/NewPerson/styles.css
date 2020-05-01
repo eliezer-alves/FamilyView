@@ -1,0 +1,119 @@
+.new-incident-container{
+    width: 100%;
+    max-width: 1120px;
+    height: 100vh;
+    margin: auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.new-incident-container .content{
+    width: 100%;
+    padding: 96px;
+    background: #f0f0f5;
+    box-shadow: 0 0 100px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.new-incident-container .content section{
+    width: 100%;
+    max-width: 350px;
+}
+
+.new-incident-container .content section h1{
+    margin: 64px 0 32px;
+    font-size: 32px;
+}
+
+.new-incident-container .content section p{
+    font-size: 18px;
+    color: #737380;
+    line-height: 32px;
+}
+
+.new-incident-container .content form{
+    width: 100%;
+    max-width: 500px; 
+}
+.new-incident-container .content form .input-group-2{
+    display: flex;
+    justify-content: space-between;
+}
+
+.new-incident-container .content form .input-group-2 .element-1{
+    width: 67%;
+ }
+ 
+ .new-incident-container .content form .input-group-2 .element-2{
+    width: 30%;
+    height: 100%;
+ }
+
+ .new-incident-container .content form .input-group-2 .element-2 .input-file{
+    margin-bottom: 30px;
+    height: 175px;
+    border: solid 1px #dedede;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    font-size: 12px;
+}
+
+.new-incident-container .content form input,
+.new-incident-container .content form textarea,
+.new-incident-container .content form select,
+.new-incident-container .content form label{
+    margin-top: 8px;
+    font-size: 18px;
+    color: #737380;
+}
+
+.new-incident-container .content form .input-group{
+    display: flex;
+    justify-content: space-around;
+}
+
+.new-incident-container .content form .input-group label{
+    width: 50%;
+    float: left;
+}
+
+.new-incident-container .content form label,
+.new-incident-container .content form .input-group label{
+    margin-top: 15px;
+}
+
+.new-incident-container .content form .input-group input + input,
+.new-incident-container .content form .input-group select + select,
+.new-incident-container .content form .input-group label + label{
+    margin-left: 8px;
+}
+
+.info-person{
+    margin-top: 40px;
+}
+
+.viewMore-link{
+    display: flex;
+    align-items: center;
+    margin-top: 40px;
+    color: #41414d;
+    font-size: 15px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: opacity 0.2s;
+}
+
+.viewMore-link svg{
+    margin-right: 8px;
+}
+
+.viewMore-link:hover{
+    opacity: 0.8;
+}
