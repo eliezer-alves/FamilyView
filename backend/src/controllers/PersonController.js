@@ -89,31 +89,36 @@ module.exports = {
         let vet2 = person.map(person => (person.mother_id));
         let father_id = vet1[0];
         let mother_id = vet2[0];
-
-        var brothers = await connection('person')
-            .where("person.mother_id", mother_id)
-            .andWhere("person.father_id", father_id)
-            //.andWhereNot("person.id_person", id_person)
-            .select('person.*');
-        console.log(brothers[0].name_person);
-        return response.json(brothers);
+        
+        if(father_id!==0&&mother_id!==1){
+            var brothers = await connection('person')
+                .where("person.mother_id", mother_id)
+                .andWhere("person.father_id", father_id)
+                //.andWhereNot("person.id_person", id_person)
+                .select('person.*');
+            console.log(brothers[0].name_person);
+            return response.json(brothers);
+        }
+        return response.json({});
     },
 
     async create(request, response){
         const {name_person, nickname, genre, birth_date, death_date, father_id, mother_id, family_id, city_person, uf_person} = request.body;
         const user_id_person = request.headers.authorization;
         const file = request.file;
-        console.log("controller -> ", file);
-        
-        await cloudinary.uploader.upload(file.path, function(err, result){
-            if(err)
-                throw err;
-            /*response.send({
-                success: true,
-                message: "File uploaded!"
-            })*/
-            photo_person = result.url;
-        });
+        console.log("controller -> ", request);
+        photo_person = 'https://res.cloudinary.com/dgyikv1zx/image/upload/v1587932250/upv6vvqrh78xhfeqxf3i.png';
+        if(file){
+            await cloudinary.uploader.upload(file.path, function(err, result){
+                if(err)
+                    throw err;
+                /*response.send({
+                    success: true,
+                    message: "File uploaded!"
+                })*/
+                photo_person = result.url;
+            });
+        }
 
         const [id_person] = await connection('person').insert({
             name_person,
@@ -153,7 +158,7 @@ module.exports = {
 
     async delete(request, response){
         const { id_person } = request.params;
-        console.log('id: ', id_person);
+        //console.log('id: ', id_person);
         const user_id = request.headers.authorization;
 
         const person = await connection('person')

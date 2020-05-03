@@ -19,9 +19,9 @@ export default function NewPerson(){
     //const [photo_person, setPhotoPerson] = useState('');
     const [birth_date, setBirth_date] = useState('');
     const [death_date, setDeath_date] = useState('');
-    const [father_id, setFather_id] = useState('');
-    const [mother_id, setMother_id] = useState('');
-    const [family_id, setFamily_id] = useState('');
+    const [father_id, setFather_id] = useState('0');
+    const [mother_id, setMother_id] = useState('1');
+    const [family_id, setFamily_id] = useState('0');
     const [city_person, setCity] = useState('');
     const [uf_person, setUf] = useState('');
     var photo_person = null;
@@ -187,11 +187,9 @@ export default function NewPerson(){
                     </div>
                     <div className="input-group">
                         <select id="father" onChange={ e => setFather_id(e.target.value) }>
-                            <option value=""></option>
                             { mens.map(men => ( <option value={men.id_person}>{men.name_person}</option> )) }
                         </select>
                         <select id="mother" onChange={ e => setMother_id(e.target.value) }>
-                            <option value=""></option>
                             { womans.map(woman => ( <option value={woman.id_person}>{woman.name_person}</option> )) }
                         </select>
                     </div>

@@ -87,7 +87,7 @@ export default function Person(){
                     
                     <section className="profile-person">
                         <div>                        
-                            <img src={defaulProfile} alt="Be The Hero"/>
+                            <img src={person.photo_person} alt="Be The Hero"/>
                         </div>
                         <div className="data-person">
                             <aside>
@@ -143,24 +143,28 @@ export default function Person(){
                 <div className="subcontent_2">
                     <h2>Membros da Família</h2>
                     <section className="meet-section">
-                        <Link onClick={() => localStorage.setItem('personId', person.father_id)} className="viewPerson-link" to={"/person/"}>
+                    { father.map( father => (   
+                        <Link onClick={() => localStorage.setItem('personId', father.id_person)} className="viewPerson-link" to={"/person/"}>
                             <div className="profile-person-2">
-                                <img src={defaulProfile} alt="Be The Hero"/>
-                                <p>{father_name}</p>
+                                <img src={father.photo_person} alt="Be The Hero"/>
+                                <p>{father.name_person}</p>
                             </div>
                         </Link>
-                        <Link onClick={() => localStorage.setItem('personId', person.mother_id)} className="viewPerson-link" to={"/person/"}>
+                    ))}
+                    { mother.map( mother => (   
+                        <Link onClick={() => localStorage.setItem('personId', mother.id_person)} className="viewPerson-link" to={"/person/"}>
                             <div className="profile-person-2">
-                                <img src={defaulProfile} alt="Be The Hero"/>
-                                <p>{mother_name}</p>
+                                <img src={mother.photo_person} alt="Be The Hero"/>
+                                <p>{mother.name_person}</p>
                             </div>
                         </Link>
+                    ))}
                     </section>
                     <section className="meet-section">
                         { brothers.map( brother => (                        
                         <Link onClick={() => localStorage.setItem('personId', brother.id_person)} className="viewPerson-link" to={"/person/"}>
                             <div className="profile-person-2">
-                                <img src={defaulProfile} alt="Be The Hero"/>
+                                <img src={brother.photo_person} alt="Be The Hero"/>
                                 <p>{ brother.name_person }</p>
                             </div>
                         </Link>

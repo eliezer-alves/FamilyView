@@ -98,6 +98,21 @@
     justify-content: space-between;
 }
 
+.person-container .content .profile-person div img{
+    width: 100%;
+    height: 100%;
+    max-width: 240px;
+    max-height: 300px; 
+}
+
+.profile-person-2 img{
+    width: 100%;
+    height: 100%;
+    max-width: 120px;
+    max-height: 120px;
+    border-radius: 50%;
+}
+
 .person-container .content .profile-person aside + aside{
     margin-top: 20px;
 }

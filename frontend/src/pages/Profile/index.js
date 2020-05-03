@@ -37,8 +37,8 @@ export default function Profile(){
                     Authorization: userId,
                 }
             });
-
-            setPersons(persons.filter(person => person.id !== id));
+            setPersons(persons.filter(person => person.id_person !== id));
+            console.log(persons);
         } catch(err){
             alert('Falha ao deletar registro!');
         }
