@@ -69,7 +69,7 @@ export default function Profile(){
                 {persons.map(person => (                   
                     <li key={person.id_person}>
                         <div>                        
-                            <img className="img-profile" src={defaulProfile} style={{width: 280,height: 280}} alt="Profile Image!"/>
+                            <img className="img-profile" src={person.photo_person} style={{width: 280,height: 280}} alt="Profile Image!"/>
                         </div>
                         <div className="info-person">
                             <aside>

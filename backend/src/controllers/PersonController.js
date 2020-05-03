@@ -102,17 +102,16 @@ module.exports = {
     async create(request, response){
         const {name_person, nickname, genre, birth_date, death_date, father_id, mother_id, family_id, city_person, uf_person} = request.body;
         const user_id_person = request.headers.authorization;
-        var photo_person = 'https://res.cloudinary.com/dgyikv1zx/image/upload/v1587932250/upv6vvqrh78xhfeqxf3i.png';
         const file = request.file;
         console.log("controller -> ", file);
         
         await cloudinary.uploader.upload(file.path, function(err, result){
             if(err)
                 throw err;
-            response.send({
+            /*response.send({
                 success: true,
                 message: "File uploaded!"
-            })
+            })*/
             photo_person = result.url;
         });
 

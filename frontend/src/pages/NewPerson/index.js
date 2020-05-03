@@ -7,7 +7,7 @@ import api from '../../services/api';
 import './styles.css';
 import logoImg from '../../assets/logo.svg';
 
-import { DropContainer, UploadMessage } from './styles';
+import { DropContainer, UploadMessage, Preview } from './styles';
 
 export default function NewPerson(){
     const history = useHistory();
@@ -16,7 +16,7 @@ export default function NewPerson(){
     const [name_person, setName] = useState();
     const [nickname, setNickname] = useState('');
     const [genre, setGenre] = useState('M');
-    const [photo_person, setPhotoPerson] = useState('');
+    //const [photo_person, setPhotoPerson] = useState('');
     const [birth_date, setBirth_date] = useState('');
     const [death_date, setDeath_date] = useState('');
     const [father_id, setFather_id] = useState('');
@@ -24,6 +24,7 @@ export default function NewPerson(){
     const [family_id, setFamily_id] = useState('');
     const [city_person, setCity] = useState('');
     const [uf_person, setUf] = useState('');
+    var photo_person = null;
 
     const [familys, setFamilys] = useState([]);
     const [mens, setMens] = useState([]);
@@ -61,12 +62,23 @@ export default function NewPerson(){
 
     async function handleNewPerson(e){
         e.preventDefault();
-        alert(photo_person);
-        const data = ({
+        console.log(photo_person)
+        const formData = new FormData();
+        formData.append("name_person", name_person);
+        formData.append("nickname", nickname);
+        formData.append("genre", genre);
+        formData.append("birth_date", birth_date);
+        formData.append("death_date", death_date);
+        formData.append("father_id", father_id);
+        formData.append("mother_id", mother_id);
+        formData.append("family_id", family_id);
+        formData.append("city_person", city_person);
+        formData.append("uf_person", uf_person);
+        formData.append("file", photo_person);
+        /*const data = ({
             name_person,
             nickname,
             genre,
-            photo_person,
             birth_date,
             death_date,
             father_id,
@@ -74,13 +86,14 @@ export default function NewPerson(){
             family_id,
             city_person,
             uf_person,
-        });
-
+        });*/
+        console.log(photo_person);
         try{
-            const response = await api.post('persons', data, {
+            const response = await api.post('persons', formData, {
                 headers: {
                     Authorization: userId,
-                }
+                    "Content-Type": `multipart/form-data; boundary=${formData._boundary}`,
+                },
             });
             
             history.push('/profile');
@@ -99,6 +112,11 @@ export default function NewPerson(){
 
         return <UploadMessage type="success">Solte aqui</UploadMessage>
     };
+
+    let onChangeHandler=e=>{
+        photo_person = e.target.files[0];
+        console.log(photo_person);    
+    }
 
     return(
         <div className="new-incident-container">
@@ -131,18 +149,12 @@ export default function NewPerson(){
                             </select>
                         </div>
                         <div className="element-2">
-                            <Dropzone accept="image/*" onDropAccepted={() => {}}>
-                                { ({ getRootProps, getInputProps, isDragActive, isDragReject}) => (
-                                    <DropContainer
-                                        {...getRootProps() }
-                                        isDragActive={isDragActive}
-                                        isDragReject={isDragReject}
-                                    >
-                                        <input {...getInputProps()} />
-                                        {renderDragMessage(isDragActive, isDragReject)}
-                                    </DropContainer>
-                                ) }
-                            </Dropzone>
+
+                            <input className="input-file"
+                            name="photo_person" type="file"
+                            multiple accept="image/*"
+                            onChange={onChangeHandler} />
+
                         </div>
                     </div>
 

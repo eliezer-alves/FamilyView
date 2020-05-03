@@ -7,6 +7,7 @@ const PersonController = require('./controllers/PersonController');
 const ProfileController = require('./controllers/ProfileController');
 const multer = require('multer');
 const multerConfig = require('./config/multer');
+const upload = multer({ dest: 'tmp/uploads/' });
 
 routes.post('/sessions', SessionController.create);
 routes.post('/users', UserController.create);
@@ -21,7 +22,7 @@ routes.get('/person/:id_person', PersonController.person);
 routes.get('/person/brothers/:id_person', PersonController.brothers);
 routes.get('/persons/mens', PersonController.mens);
 routes.get('/persons/womans', PersonController.womans);
-routes.post('/persons', multer(multerConfig).single('photo_person'), (request, response) =>{console.log("routes -> ", request.file);}, PersonController.create);
+routes.post('/persons', multer(multerConfig).single('file'), PersonController.create);
 routes.post('/persons/update', multer(multerConfig).single('photo'), PersonController.update);
 routes.delete('/persons/:id_person', PersonController.delete);
 
@@ -33,11 +34,9 @@ routes.post("/upload", multer(multerConfig).single('file'), (request, response) 
 })
 //routes.get('/ongs', OngController.index);
 /*routes.delete('/ongs/:id', OngController.delete);
-
 routes.get('/incidents', IncidentController.index);
 routes.post('/incidents', IncidentController.create);
 routes.delete('/incidents/:id', IncidentController.delete);
-
 routes.get('/profile', ProfileController.index);*/
 
 module.exports = routes;
