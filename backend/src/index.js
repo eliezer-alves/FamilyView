@@ -12,4 +12,4 @@ app.use(fileUpload({
     useTempFiles: true
 }));
 
-app.listen(3333);
+app.listen(process.env.PORT || 3333);
