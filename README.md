@@ -7,3 +7,6 @@ Sistema de registro genealógico. Stacck: React e NodeJs
 ## Setup
 //
 
+## Uso
+//
+
